@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f6f2ea;
+  color: #26261f;
+}
+
+::selection {
+  background-color: #5f7a63;
+  color: #f6f2ea;
+}
+
+/* Reveal-on-scroll utility, toggled via IntersectionObserver in Reveal.tsx */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Custom focus ring for accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #5f7a63;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
